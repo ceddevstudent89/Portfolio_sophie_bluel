@@ -7,7 +7,7 @@ connect.addEventListener("click", (event) => {
   document.getElementById("password").select();
 });
 
-//recupere les mail et password
+// Récupère le mail et le password
 Form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const bodyJson = JSON.stringify({
