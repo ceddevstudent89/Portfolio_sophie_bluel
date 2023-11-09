@@ -36,12 +36,10 @@
                 <a href="index.html#contact">contact</a>
               </li>
               <li>
-                <a href="login.html">login</a>
+                <a href="#">login</a>
               </li>
               <li>
-                <a href="http://instagram.com" target="_blank">
-                  <img src="./assets/icons/instagram.png" alt="Instagram" />
-                </a>
+                <img src="./assets/icons/instagram.png" alt="Instagram" />
               </li>
             </ul>
           </nav>
@@ -49,17 +47,11 @@
         <main>
           <section id="pass">
             <h2>Log in</h2>
-            <p>Connectez-vous !</p>
             <form id="form" action="#">
               <label for="mail">E-mail</label>
-              <input id="email" placeholder="ex: sophie.bluel@test.tld" />
-              <label for="mdp">Mot de passe (6 characters minimum)</label>
-              <input
-                id="mdp"
-                name="mdp"
-                autocomplete="current-password"
-                placeholder="ex: S0phie"
-              />
+              <input id="email" required />
+              <label for="mdp">Mot de passe</label>
+              <input id="mdp" name="mdp" required />
               <input id="connect" type="submit" value="Se connecter" />
               <a class="password" href="#">Mot de passe oublié</a>
             </form>
