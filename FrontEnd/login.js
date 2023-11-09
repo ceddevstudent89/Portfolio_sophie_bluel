@@ -28,7 +28,7 @@ function login() {
     password: password,
   };
 
-  fetch("http:localhost:5678/api/users/login", {
+  fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ function login() {
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
-      window.location.href = "/index.html";
+      window.location.href = "../FrontEnd/index.html";
     })
     .catch((error) => {
       console.log(error);
