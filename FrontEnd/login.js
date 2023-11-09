@@ -19,7 +19,9 @@ status : 200 / application/json
 
 function login() {
   let email = document.getElementById("email").value;
+  console.log(email);
   let password = document.getElementById("mdp").value;
+  console.log(password);
 
   let data = {
     email: email,
@@ -35,22 +37,19 @@ function login() {
       if (response.ok) {
         return response.json();
       } else {
-        return Promise.reject("response.status");
+        return Promise.reject(response.status);
       }
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
-      window.location.href = "index.html";
+      window.location.href = "/index.html";
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
-// let form = document.getElementById("form");
-// console.log(form);
-
-document.querySelector("form").addEventListener("submit", function (event) {
+document.querySelector("#form").addEventListener("submit", function (event) {
   event.preventDefault();
   login();
 });
