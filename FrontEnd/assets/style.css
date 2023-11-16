@@ -186,6 +186,28 @@ nav ul li a:hover {
   font-weight: 600;
 }
 
+/* barre noir Admin*/
+#darkBar {
+  background-color: #000;
+  padding: 20px;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#darkBar span,
+#darkBar i {
+  color: #fff;
+  margin-left: 10px;
+}
+
 #introduction {
   display: flex;
   align-items: center;
