@@ -23,9 +23,9 @@
       <i class="fa-regular fa-pen-to-square"></i>
       <span>Mode édition</span>
     </div>
-    <aside class="modal">
+    <div class="modal">
       <!-- ici la modal -->
-    </aside>
+    </div>
     <header>
       <h1>Sophie Bluel<span>Architecte d'intérieur</span></h1>
       <nav>
@@ -70,9 +70,14 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="title__portfolio">
+          <h2>Mes Projets</h2>
+          <div class="portfolio__icon" style="display: none">
+            <span><i class="fa-regular fa-pen-to-square"></i></span>
+          </div>
+        </div>
         <!-- filtres -->
-        <div class="filters">
+        <div class="filters" style="display: block">
           <button class="filter__btn filter-id-1 active">Tous</button>
           <button class="filter__btn filter-id-2">Objets</button>
           <button class="filter__btn filter-id-3">Appartements</button>

@@ -3,13 +3,18 @@ const projets = await reponse.json();
 
 let token = localStorage.getItem("token");
 const darkBar = document.getElementById("darkBar");
-console.log(darkBar);
+const divFilters = document.querySelector(".filters");
+const iconEl = document.querySelector(".portfolio__icon");
 
 if (token) {
-  console.log(token);
+  // console.log(token);
   darkBar.style.display = "block";
+  divFilters.style.display = "none";
+  iconEl.style.display = "block";
 } else {
   darkBar.style.display = "none";
+  divFilters.style.display = "block";
+  iconEl.style.display = "none";
 }
 
 function genererProjets(projets) {

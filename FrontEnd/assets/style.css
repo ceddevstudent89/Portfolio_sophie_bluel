@@ -233,8 +233,21 @@ nav ul li a:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
+.title__portfolio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 8em 0 5em;
+  gap: 2em;
+}
+.portfolio__icon i {
+  font-size: 15.5px;
+  color: #000;
+}
+
 .gallery {
   width: 100%;
   display: grid;
@@ -298,6 +311,7 @@ footer nav ul {
 
 /* Filters */
 .filters {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
