@@ -1,6 +1,17 @@
 const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 
+let token = localStorage.getItem("token");
+const darkBar = document.getElementById("darkBar");
+console.log(darkBar);
+
+if (token) {
+  console.log(token);
+  darkBar.style.display = "block";
+} else {
+  darkBar.style.display = "none";
+}
+
 function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const gallery = projets[i];

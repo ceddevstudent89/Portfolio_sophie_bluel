@@ -2,8 +2,6 @@ const disconnected = document.querySelector(".disconnected");
 const emailError = document.querySelector(".email__error");
 const mdpError = document.querySelector(".mdp__error");
 
-// Si l'utilisateur est déjà connecté, on supprime le token
-
 loggingOutOfTheAdminPage();
 
 function loggingOutOfTheAdminPage() {
