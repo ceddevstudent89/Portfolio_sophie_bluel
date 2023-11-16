@@ -233,7 +233,6 @@ nav ul li a:hover {
 }
 #portfolio h2 {
   text-align: center;
-  /* margin-bottom: 1em; */
 }
 .title__portfolio {
   display: flex;
@@ -243,6 +242,11 @@ nav ul li a:hover {
   margin: 8em 0 5em;
   gap: 2em;
 }
+
+.portfolio__icon {
+  cursor: pointer;
+}
+
 .portfolio__icon i {
   font-size: 15.5px;
   color: #000;
