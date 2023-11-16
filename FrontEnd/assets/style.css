@@ -182,6 +182,10 @@ nav ul li a:hover {
   color: #b1663c;
 }
 
+.link__bold {
+  font-weight: 600;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -292,6 +296,7 @@ footer nav ul {
   transition: 0.5s ease;
 }
 
+.active,
 .filter__btn:hover {
   color: white;
   background-color: #1d6154;
@@ -306,7 +311,7 @@ nav ul li a {
   text-decoration: none;
 }
 
-#pass {
+#admin {
   text-align: center;
 }
 

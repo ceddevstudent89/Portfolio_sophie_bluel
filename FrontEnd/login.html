@@ -36,7 +36,7 @@
                 <a href="index.html#contact">contact</a>
               </li>
               <li>
-                <a href="#">login</a>
+                <a href="#" class="link__bold">login</a>
               </li>
               <li>
                 <img src="./assets/icons/instagram.png" alt="Instagram" />
@@ -45,13 +45,16 @@
           </nav>
         </header>
         <main>
-          <section id="pass">
+          <section id="admin">
             <h2>Log in</h2>
+            <div class="disconnected"></div>
             <form id="form" action="#">
               <label for="mail">E-mail</label>
               <input id="email" required />
+              <div class="email__error"></div>
               <label for="mdp">Mot de passe</label>
               <input id="mdp" name="mdp" required />
+              <div class="mdp__error"></div>
               <input id="connect" type="submit" value="Se connecter" />
               <a class="password" href="#">Mot de passe oublié</a>
             </form>
