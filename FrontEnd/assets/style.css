@@ -3,6 +3,10 @@
    License: none (public domain)
 */
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -390,6 +394,11 @@ nav ul li a {
   border: none;
   height: 36px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+#form #connect:hover {
+  background-color: #0e2f28;
 }
 
 footer nav ul a {
@@ -397,4 +406,244 @@ footer nav ul a {
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
+}
+
+/* modale 1 */
+
+.modal,
+.modal2 {
+  z-index: 1000;
+  width: 700px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.btn-close {
+  font-size: 21px;
+  color: #000;
+  font-size: 1.2em;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.btn-close2 {
+  font-size: 21px;
+  color: #000;
+  font-size: 1.2em;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.btn-close3 {
+  font-size: 21px;
+  color: #000;
+  font-size: 1.2em;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modal-container {
+  padding: 2em 6em;
+}
+
+.modal-header h3 {
+  color: #000;
+  margin: 1em 0;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.modal-gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin: 3em 0;
+}
+
+.modal-gallery img {
+  width: 100%;
+}
+
+figure {
+  position: relative;
+}
+
+.btn__Trash {
+  background-color: #000;
+  padding: 0.2em;
+  color: #fff;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
+}
+
+.modal-footer {
+  padding-top: 2em;
+  border-top: 1px solid #b3b3b3;
+  text-align: center;
+}
+
+.modal-footer button {
+  border: none;
+  border-radius: 60px;
+  width: 237px;
+  font-family: Syne;
+  color: #fff;
+  font-size: 14px;
+  display: inline-block;
+  padding: 0.8em;
+  background-color: #1d6154;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  background-color: #0e2f28;
+}
+
+.overlay,
+.overlay2 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+/* modal 2 */
+
+.modal-nav .fa-arrow-left {
+  color: #000;
+  font-size: 21px;
+}
+#modal-edit-project-form .modal-content-new-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 19px 0;
+  background-color: #e8f1f7;
+  border-radius: 3px;
+  margin: 35px 105px 0 105px;
+}
+
+.modal-content-new-photo i {
+  font-size: 58px;
+  color: #b9c5cc;
+  padding-bottom: 20px;
+}
+
+.modal-content-new-photo #new-image {
+  background-color: #cbd6dc;
+  border: none;
+  border-radius: 50px;
+  font-family: "Work Sans";
+  font-size: 1em;
+  line-height: 16px;
+  color: #306685;
+  text-align: center;
+  padding: 10px 33px;
+  cursor: pointer;
+}
+
+.modal-content-new-photo #form-image {
+  margin-top: -36px;
+  width: 173px;
+  padding: 8px 0;
+  border: none;
+  border-radius: 50px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.modal-content-new-photo p {
+  font-size: 10px;
+  line-height: 12px;
+  color: #444;
+  padding-top: 7px;
+}
+
+#modal-edit-project-form .modal-content-new-category-title {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px 105px 0 105px;
+}
+
+.modal-content-new-category-title input[type="text"],
+select {
+  height: 51px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  border: none;
+}
+
+.modal-content-new-category-title #form-title,
+#form-category {
+  color: #444;
+  padding-left: 16px;
+  font-family: "Work Sans";
+  font-size: 1em;
+}
+
+.modal-content-new-category-title label {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.modal-content-new-category-title .border-in-second-window-of-modal {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 45px;
+}
+
+#modal-edit-project-form input[type="submit"] {
+  background-color: #a7a7a7;
+  border: none;
+  width: 234px;
+  padding: 10px 49px;
+  cursor: pointer;
+}
+
+#modal-edit-project-form input[type="submit"]:hover {
+  background-color: #1d6154;
 }
