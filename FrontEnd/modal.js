@@ -65,6 +65,7 @@ const closeModal3 = function () {
 openModalBtn2?.addEventListener("click", openModal2);
 closeModalBtn2?.addEventListener("click", closeModal2);
 closeModalBtn3?.addEventListener("click", closeModal3);
+overlay2?.addEventListener("click", closeModal3);
 //
 function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
