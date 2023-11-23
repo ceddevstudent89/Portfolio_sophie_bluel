@@ -1,6 +1,7 @@
 const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 //
+const token = localStorage.getItem("token");
 
 // Gestion de la modale 1
 const modal = document.querySelector(".modal");
@@ -21,7 +22,7 @@ const closeModal = function () {
 openModalBtn.addEventListener("click", openModal);
 closeModalBtn.addEventListener("click", closeModal);
 //
-overlay?.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
 //
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" && !modal.classList.contains("hidden")) {
@@ -70,6 +71,8 @@ overlay2.addEventListener("click", closeModal3);
 function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const gallery = projets[i];
+    const id = gallery.id; // utiliser ce id pour supprimer la photo
+    // console.log(id);
     // Récupération de l'élément du DOM qui accueillera les photos
     const divGallery = document.querySelector(".modal-gallery");
     // Création d’une balise dédiée à un projet
@@ -79,14 +82,42 @@ function genererProjets(projets) {
     imageElement.src = gallery.imageUrl;
     //
     const trashElement = document.createElement("i");
-    trashElement.setAttribute("class", "fa-solid fa-trash-can btn__Trash");
-
+    trashElement.setAttribute("class", "fa-solid fa-trash-can btn__trash");
     // On rattache la balise à la div gallery
     divGallery?.appendChild(projetElement);
     projetElement.appendChild(imageElement);
     projetElement.appendChild(trashElement);
+
+    trashElement.addEventListener("click", (event) => {
+      console.log(event);
+      deletePhoto(id);
+    });
   }
 }
-
 // afficher les projets
 genererProjets(projets);
+
+function deletePhoto(PhotoId) {
+  fetch(`http://localhost:5678/api/works/${PhotoId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      // Vérification de la réponse
+      if (response.ok) {
+        console.log("Suppression du projet");
+        return response.json();
+      } else {
+        // Si erreur elle est rejetée et indique le status de l'erreur
+        return Promise.reject(response.status);
+      }
+    })
+    // Si erreur dans le code
+    .catch((error) => {
+      console.log(error);
+    });
+}
