@@ -73,6 +73,7 @@ async function login() {
       console.log(data);
       // stokage du token dans le local Storage
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
       // Redirection vers la page d'acceuil
       if (localStorage.getItem("token")) {
         window.location.href = "index.html";

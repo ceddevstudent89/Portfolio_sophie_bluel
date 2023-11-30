@@ -565,6 +565,20 @@ figure {
   background-color: #e8f1f7;
   border-radius: 3px;
   margin: 35px 105px 0 105px;
+  position: relative;
+}
+
+.image-container {
+  width: 135px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-container img {
+  width: 100%;
+  object-fit: cover;
 }
 
 .modal-content-new-photo i {

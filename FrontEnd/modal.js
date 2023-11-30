@@ -97,8 +97,8 @@ function genererProjets(projets) {
 // afficher les projets
 genererProjets(projets);
 
-function deletePhoto(PhotoId) {
-  fetch(`http://localhost:5678/api/works/${PhotoId}`, {
+async function deletePhoto(PhotoId) {
+  const response = await fetch(`http://localhost:5678/api/works/${PhotoId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -121,3 +121,62 @@ function deletePhoto(PhotoId) {
       console.log(error);
     });
 }
+
+// Afficher l'image
+let chosenImage = document.getElementById("chosen-image");
+console.log(chosenImage);
+let uploadButton = document.getElementById("form-image");
+
+uploadButton?.addEventListener("change", function () {
+  let reader = new FileReader();
+  reader.readAsDataURL(uploadButton.files[0]);
+  console.log(uploadButton.files[0]);
+  reader.onload = function () {
+    chosenImage?.setAttribute("src", reader.result);
+  };
+});
+
+// Ajout de projet
+// Récupérer les valeurs
+const btnAjouterProjet = document.querySelector("#submit-new-project");
+const formEl = document.getElementById("modal-edit-project-form");
+
+async function uploadPhoto() {
+  const inpFile = document.getElementById("form-image");
+  const titleEl = document.getElementById("form-title");
+  const categoryEl = document.getElementById("form-category");
+
+  let formData = new FormData();
+  console.log(inpFile.files[0]);
+  formData.append("image", inpFile.files[0]);
+  formData.append("title", titleEl.value);
+  formData.append("category", categoryEl.value);
+
+  const response = await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: "Bearer" + localStorage.getItem("token"),
+      accept: "application/json",
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Requête incorrecte !");
+      }
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(console.error);
+}
+
+btnAjouterProjet?.addEventListener("click", (event) => {
+  event.preventDefault();
+  uploadPhoto();
+});
+
+// ERREUR STATUS 401
