@@ -58,8 +58,8 @@
       <div class="modal-header">
         <h3>Ajout photo</h3>
       </div>
-      <form id="modal-edit-project-form" enctype="multipart/form-data">
-        <div id="modal-edit-new-photo" class="modal-content-new-photo">
+      <form id="modal-edit-project-form" method="post">
+        <label id="modal-edit-new-photo" class="modal-content-new-photo">
           <figure class="image-container">
             <img id="chosen-image" />
           </figure>
@@ -67,16 +67,13 @@
           <label id="new-image">+ Ajouter photo</label>
           <input id="form-image" type="file" accept="image/*" required />
           <p id="photo-size">jpg, png : 4mo max</p>
-        </div>
+        </label>
         <div class="modal-content-new-category-title">
           <label for="form-title">Titre</label>
           <input type="text" id="form-title" value="" required />
           <label for="form-category">Catégorie</label>
           <select class="choice-category" id="form-category">
-            <option value=""></option>
-            <option value="objets">Objets</option>
-            <option value="appartements">Appartements</option>
-            <option value="hotels">Hôtels & restaurants</option>
+            <!-- Créer en javascript -->
           </select>
           <hr class="border-in-second-window-of-modal" />
           <input type="submit" id="submit-new-project" value="Valider" />

@@ -136,28 +136,47 @@ uploadButton?.addEventListener("change", function () {
   };
 });
 
-// Ajout de projet
-// Récupérer les valeurs
-const btnAjouterProjet = document.querySelector("#submit-new-project");
-const formEl = document.getElementById("modal-edit-project-form");
+function genererOption(projets) {
+  for (let i = 0; i < projets.length; i++) {
+    const category = projets[i];
+    // Récupération de l'élément
+    const selectElement = document.querySelector("#form-category");
+    // Création de balises option
+    const optionElement = document.createElement("option");
+    optionElement.dataset.id = `${category.categoryId}`;
+    optionElement.value = `${category.category.name}`;
+    optionElement.innerText = `${category.category.name}`;
+    // On rattache la balise au parent select
+    selectElement?.appendChild(optionElement);
+  }
+}
+genererOption(projets);
 
-async function uploadPhoto() {
-  const inpFile = document.getElementById("form-image");
-  const titleEl = document.getElementById("form-title");
-  const categoryEl = document.getElementById("form-category");
+const postForm = document.querySelector("#modal-edit-project-form");
+console.log(postForm);
 
-  let formData = new FormData();
-  console.log(inpFile.files[0]);
-  formData.append("image", inpFile.files[0]);
-  formData.append("title", titleEl.value);
-  formData.append("category", categoryEl.value);
+postForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const image = document.querySelector("#form-image").files[0];
+  console.log(image);
+  const title = document.querySelector("#form-title").value;
+  console.log(title);
+  const selectElement = document.querySelector("#form-category");
+  const selectedOption = selectElement.options[selectElement.selectedIndex];
+  const categoryId = selectedOption.dataset.id;
 
-  const response = await fetch("http://localhost:5678/api/works", {
+  const formData = new FormData();
+  formData.append("image", image);
+  formData.append("title", title);
+  // Réussir à faire arriver l'ID des catégories dans le form pour pouvoir réussir le POST.
+  formData.append("category", categoryId);
+
+  const monToken = localStorage.getItem("token");
+
+  fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: "Bearer" + localStorage.getItem("token"),
-      accept: "application/json",
+      Authorization: `Bearer ${monToken}`,
     },
     body: formData,
   })
@@ -172,11 +191,4 @@ async function uploadPhoto() {
       console.log(data);
     })
     .catch(console.error);
-}
-
-btnAjouterProjet?.addEventListener("click", (event) => {
-  event.preventDefault();
-  uploadPhoto();
 });
-
-// ERREUR STATUS 401
