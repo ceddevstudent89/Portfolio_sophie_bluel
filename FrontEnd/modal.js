@@ -136,22 +136,6 @@ uploadButton?.addEventListener("change", function () {
   };
 });
 
-function genererOption(projets) {
-  for (let i = 0; i < projets.length; i++) {
-    const category = projets[i];
-    // Récupération de l'élément
-    const selectElement = document.querySelector("#form-category");
-    // Création de balises option
-    const optionElement = document.createElement("option");
-    optionElement.dataset.id = `${category.categoryId}`;
-    optionElement.value = `${category.category.name}`;
-    optionElement.innerText = `${category.category.name}`;
-    // On rattache la balise au parent select
-    selectElement?.appendChild(optionElement);
-  }
-}
-genererOption(projets);
-
 const postForm = document.querySelector("#modal-edit-project-form");
 console.log(postForm);
 
