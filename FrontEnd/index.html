@@ -59,15 +59,19 @@
         <h3>Ajout photo</h3>
       </div>
       <form id="modal-edit-project-form" method="post">
-        <label id="modal-edit-new-photo" class="modal-content-new-photo">
+        <div id="modal-edit-new-photo" class="modal-content-new-photo">
+          <i
+            id="photo-add-icon"
+            class="fa-regular fa-image"
+            style="display: block"
+          ></i>
+          <label id="new-image" style="display: block">+ Ajouter photo</label>
+          <input id="form-image" type="file" accept="image/*" required />
+          <p id="photo-size" style="display: block">jpg, png : 4mo max</p>
           <figure class="image-container">
             <img id="chosen-image" />
           </figure>
-          <i id="photo-add-icon" class="fa-regular fa-image"></i>
-          <label id="new-image">+ Ajouter photo</label>
-          <input id="form-image" type="file" accept="image/*" required />
-          <p id="photo-size">jpg, png : 4mo max</p>
-        </label>
+        </div>
         <div class="modal-content-new-category-title">
           <label for="form-title">Titre</label>
           <input type="text" id="form-title" value="" required />

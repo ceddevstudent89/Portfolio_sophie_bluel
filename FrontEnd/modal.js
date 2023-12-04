@@ -124,7 +124,6 @@ async function deletePhoto(PhotoId) {
 
 // Afficher l'image
 let chosenImage = document.getElementById("chosen-image");
-console.log(chosenImage);
 let uploadButton = document.getElementById("form-image");
 
 uploadButton?.addEventListener("change", function () {
@@ -132,13 +131,19 @@ uploadButton?.addEventListener("change", function () {
   reader.readAsDataURL(uploadButton.files[0]);
   console.log(uploadButton.files[0]);
   reader.onload = function () {
-    chosenImage?.setAttribute("src", reader.result);
+    chosenImage.setAttribute("src", reader.result);
   };
+  let iconNewPhoto = document.getElementById("photo-add-icon");
+  iconNewPhoto.style.display = "none";
+  let photoMaxSize = document.getElementById("photo-size");
+  photoMaxSize.style.display = "none";
+  let buttonNewPhoto = document.getElementById("new-image");
+  buttonNewPhoto.style.display = "none";
+  let modalEditPhoto = document.getElementById("modal-edit-new-photo");
+  modalEditPhoto.style.padding = "0";
 });
 
 const postForm = document.querySelector("#modal-edit-project-form");
-console.log(postForm);
-
 postForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const image = document.querySelector("#form-image").files[0];
@@ -152,7 +157,6 @@ postForm?.addEventListener("submit", (event) => {
   const formData = new FormData();
   formData.append("image", image);
   formData.append("title", title);
-  // Réussir à faire arriver l'ID des catégories dans le form pour pouvoir réussir le POST.
   formData.append("category", categoryId);
 
   const monToken = localStorage.getItem("token");
