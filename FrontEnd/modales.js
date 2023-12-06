@@ -159,12 +159,12 @@ postForm?.addEventListener("submit", (event) => {
   formData.append("title", title);
   formData.append("category", categoryId);
 
-  const monToken = localStorage.getItem("token");
+  const myToken = localStorage.getItem("token");
 
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${monToken}`,
+      Authorization: `Bearer ${myToken}`,
     },
     body: formData,
   })

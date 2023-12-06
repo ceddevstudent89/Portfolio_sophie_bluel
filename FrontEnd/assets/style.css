@@ -3,10 +3,6 @@
    License: none (public domain)
 */
 
-* {
-  box-sizing: border-box;
-}
-
 html,
 body,
 div,
@@ -133,6 +129,7 @@ table {
 }
 /** end reset css**/
 body {
+  background: #fffef8;
   max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
@@ -174,20 +171,20 @@ nav ul {
   list-style-type: none;
 }
 nav li {
-  padding: 0 10px;
+  padding: 0 20px;
   font-size: 1.2em;
 }
 
-li:hover {
-  color: #b1663c;
+.icon-instagram {
+  color: #000;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
 }
 
-nav ul li a:hover {
+li:hover,
+a:hover {
   color: #b1663c;
-}
-
-.link__bold {
-  font-weight: 600;
 }
 
 /* barre noir Admin*/
@@ -210,6 +207,10 @@ nav ul li a:hover {
 #darkBar i {
   color: #fff;
   margin-left: 10px;
+}
+
+.fa-pen-to-square {
+  color: #fff;
 }
 
 #introduction {
@@ -235,9 +236,6 @@ nav ul li a:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
-#portfolio h2 {
-  text-align: center;
-}
 .title__portfolio {
   display: flex;
   flex-direction: row;
@@ -246,16 +244,13 @@ nav ul li a:hover {
   margin: 8em 0 5em;
   gap: 2em;
 }
-
 .portfolio__icon {
   cursor: pointer;
 }
-
 .portfolio__icon i {
   font-size: 15.5px;
   color: #000;
 }
-
 .gallery {
   width: 100%;
   display: grid;
@@ -315,38 +310,35 @@ footer nav ul {
   margin: 2em;
 }
 
-/* **************************************************** */
+/* filtres */
 
-/* Filters */
-.filters {
+.btns-filtres {
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 40px 0;
-  gap: 10px;
+  margin-bottom: 4em;
 }
-.filter__btn {
-  font-family: "Syne";
-  padding: 10px 20px;
-  border: 1px solid #1d6154;
-  border-radius: 25px;
+
+.filtre__btn {
+  font-family: Syne;
   color: #1d6154;
-  background-color: white;
   font-size: 16px;
   font-weight: 700;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  border: #1d6154 1px solid;
+  background-color: transparent;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: 0.3s ease-out;
 }
 
-.active,
-.filter__btn:hover {
-  color: white;
+.filtre__btn:hover {
   background-color: #1d6154;
+  color: #fff;
 }
 
-/* ******************************************************** */
+.filtre__btn.active {
+  background-color: #1d6154;
+  color: #fff;
+}
 
 /* login */
 
@@ -355,50 +347,125 @@ nav ul li a {
   text-decoration: none;
 }
 
-#admin {
+.link-bold {
+  font-weight: 600;
+}
+
+.container {
+  max-width: 600px;
+  margin: 10em auto 17em;
+  padding: 30px;
+  color: #f1f1f1;
+  border-radius: 5px;
+  border: 1px solid #ffffffc3;
+}
+
+h2 {
+  font-family: Syne;
+  color: #1d6154;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.deconnection-msg {
   text-align: center;
 }
 
-#form {
-  width: 40%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.input-group {
+  margin-top: 30px;
+  position: relative;
 }
 
-#form label {
-  align-self: flex-start;
+label {
   color: #3d3d3d;
   font-size: 14px;
   font-weight: 500;
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
 }
 
-#form a {
-  color: #3d3d3d;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-#form #email,
-#mdp {
+#email,
+#password {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  padding: 20px 0;
+  background: #fff;
   border: none;
-  height: 51px;
-  flex-shrink: 0;
-  background-color: #fff;
+  outline: 0;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-  font-size: 20px;
 }
 
-#form #connect {
-  border: none;
-  height: 36px;
+input:focus {
+  box-shadow: 0 1px 0 #fff;
+}
+
+input::placeholder {
+  font-size: 16px;
+}
+
+.icon-input-container {
+  position: relative;
+}
+
+.icone-verif {
+  width: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 40px;
+  display: none;
+}
+
+.error-msg {
+  margin-top: 7px;
+  color: #f75252;
+  font-weight: 400;
+  display: none;
+}
+
+.validate-info,
+.validate-mdp {
+  margin-top: 8px;
+  color: #f75252;
+  font-weight: 400;
+  display: block;
+}
+
+form button {
+  font-size: 14px;
+  min-width: 150px;
+  display: block;
+  margin: 2em auto;
+  width: 180px;
+  padding: 10px 15px;
+  background: #1d6154;
+  border: 1px solid #f1f1f13d;
+  border-radius: 60px;
+  color: #fff;
+  font-family: Syne;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-#form #connect:hover {
+form button:hover {
   background-color: #0e2f28;
+}
+
+.mdp-forgot {
+  font-family: Work Sans;
+  color: #3d3d3d;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+footer nav li {
+  padding: 0;
 }
 
 footer nav ul a {
@@ -413,21 +480,22 @@ footer nav ul a {
 .modal,
 .modal2 {
   z-index: 1000;
-  width: 700px;
+  width: 630px;
+  height: 688px;
   padding: 1.3rem;
-  min-height: 250px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 10px;
+  animation: fadeIn 0.5s both;
 }
 
 .btn-close {
   font-size: 21px;
   color: #000;
-  font-size: 1.2em;
+  font-size: 1.5em;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -437,7 +505,7 @@ footer nav ul a {
 .btn-close2 {
   font-size: 21px;
   color: #000;
-  font-size: 1.2em;
+  font-size: 1.5em;
   position: absolute;
   top: 20px;
   left: 20px;
@@ -447,7 +515,7 @@ footer nav ul a {
 .btn-close3 {
   font-size: 21px;
   color: #000;
-  font-size: 1.2em;
+  font-size: 1.5em;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -473,11 +541,12 @@ footer nav ul a {
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  margin: 3em 0;
+  margin: 4em 0 5em;
 }
 
 .modal-gallery img {
   width: 100%;
+  object-fit: cover;
 }
 
 figure {
@@ -495,7 +564,7 @@ figure {
 }
 
 .modal-footer {
-  padding-top: 2em;
+  padding-top: 4em;
   border-top: 1px solid #b3b3b3;
   text-align: center;
 }
@@ -529,7 +598,6 @@ figure {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(1px);
   z-index: 1;
 }
 
@@ -551,6 +619,24 @@ figure {
   display: none;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 /* modal 2 */
 
 .modal-nav .fa-arrow-left {
@@ -562,9 +648,10 @@ figure {
   flex-direction: column;
   align-items: center;
   padding: 30px 0 19px 0;
-  background-color: #e8f1f7;
+  background-color: #e8f1f6;
   border-radius: 3px;
   margin: 35px 105px 0 105px;
+  border-radius: 3px;
 }
 
 .image-container img {
@@ -572,7 +659,7 @@ figure {
 }
 
 .modal-content-new-photo i {
-  font-size: 58px;
+  font-size: 78px;
   color: #b9c5cc;
   padding-bottom: 20px;
 }
@@ -601,8 +688,9 @@ figure {
 }
 
 .modal-content-new-photo p {
+  font-family: Work Sans;
   font-size: 10px;
-  line-height: 12px;
+  font-weight: 400;
   color: #444;
   padding-top: 7px;
 }
@@ -634,16 +722,19 @@ select {
   padding-bottom: 10px;
 }
 
-.modal-content-new-category-title .border-in-second-window-of-modal {
+.modal-content-new-category-title .line-modal {
   margin-left: 0;
   margin-right: 0;
-  margin-top: 45px;
+  margin-top: 5em;
 }
 
 #modal-edit-project-form input[type="submit"] {
+  color: #fff;
+  font-size: 14px;
+  font-family: Syne;
   background-color: #a7a7a7;
   border: none;
-  width: 234px;
+  width: 237px;
   padding: 10px 49px;
   cursor: pointer;
 }

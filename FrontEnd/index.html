@@ -16,24 +16,28 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./assets/style.css" />
-    <script type="module" src="modal.js"></script>
+    <script type="module" src="modales.js"></script>
     <script type="module" src="main.js"></script>
   </head>
   <body>
+    <!-- -------------------Barre Noir-------------------------- -->
     <div id="darkBar" style="display: none">
       <i class="fa-regular fa-pen-to-square"></i>
       <span>Mode édition</span>
     </div>
-    <!-- ----------------------------------------------------------- --->
-    <!-- -----------------------------Modale 1-------------------------->
-
-    <section class="modal hidden">
+    <!-- ------------------------Modale 1-------------------------->
+    <section
+      class="modal hidden"
+      aria-hidden="false"
+      role="dialog"
+      aria-labelledby="titlemodal"
+    >
       <div class="modal-nav">
         <span class="btn-close"><i class="fa-solid fa-xmark"></i></span>
       </div>
       <div class="modal-container">
         <div class="modal-header">
-          <h3>Galerie photo</h3>
+          <h3 id="titlemodal">Galerie photo</h3>
         </div>
         <div class="modal-body">
           <div class="modal-gallery"></div>
@@ -43,12 +47,9 @@
         </div>
       </div>
     </section>
-
     <div class="overlay2 hidden"></div>
-
-    <!-- ----------------------------------------------------------- ---->
-    <!-- -----------------------------Modal 2---------------------------- -->
-    <section class="modal2 hidden">
+    <!-- ------------------------Modal 2---------------------------- -->
+    <section class="modal2 hidden" role="dialog" aria-labelledby="titlemodal2">
       <div class="modal-nav">
         <a class="btn-close2"><i class="fa-solid fa-arrow-left"></i></a>
         <a class="btn-close3" id="arrow-return" href="#"
@@ -56,7 +57,7 @@
         ></a>
       </div>
       <div class="modal-header">
-        <h3>Ajout photo</h3>
+        <h3 id="titlemodal2">Ajout photo</h3>
       </div>
       <form id="modal-edit-project-form" method="post">
         <div id="modal-edit-new-photo" class="modal-content-new-photo">
@@ -78,17 +79,18 @@
           <label for="form-category">Catégorie</label>
           <select class="choice-category" id="form-category">
             <!-- Créer en javascript -->
+            <option value=""></option>
             <option data-id="1" value="objets">Objets</option>
             <option data-id="2" value="appartements">Appartements</option>
             <option data-id="3" value="hotels">Hôtel & restaurants</option>
           </select>
-          <hr class="border-in-second-window-of-modal" />
+          <hr class="line-modal" />
           <input type="submit" id="submit-new-project" value="Valider" />
         </div>
       </form>
     </section>
     <div class="overlay hidden"></div>
-    <!-- ----------------------------------------------------------------- -->
+    <!-- ---------------Navigation------------------------ -->
     <header>
       <h1>Sophie Bluel<span>Architecte d'intérieur</span></h1>
       <nav>
@@ -103,7 +105,11 @@
             <a href="login.html">login</a>
           </li>
           <li>
-            <img src="./assets/icons/instagram.png" alt="Instagram" />
+            <img
+              class="icon-instagram"
+              src="./assets/icons/instagram.png"
+              alt="Instagram"
+            />
           </li>
         </ul>
       </nav>
@@ -139,16 +145,15 @@
             <span><i class="btn-open fa-regular fa-pen-to-square"></i></span>
           </div>
         </div>
-        <!-- filtres -->
-        <div class="filters" style="display: block">
-          <button class="filter__btn filter-id-1 active">Tous</button>
-          <button class="filter__btn filter-id-2">Objets</button>
-          <button class="filter__btn filter-id-3">Appartements</button>
-          <button class="filter__btn filter-id-4">Hôtels & restaurants</button>
+        <!-- --------------------filtres------------------------ -->
+        <div class="btns-filtres" style="display: block">
+          <button class="filtre__btn btn-tous active">Tous</button>
+          <button class="filtre__btn btn-objets">Objets</button>
+          <button class="filtre__btn btn-apparts">Appartements</button>
+          <button class="filtre__btn btn-hotels">Hôtels & restaurants</button>
         </div>
-        <!-- -----------------Fin Filtres----------------------- -->
         <div class="gallery">
-          <!-- gallerie generer dynaniquement -->
+          <!-- Création de la galerie en javascript -->
         </div>
       </section>
       <section id="contact">

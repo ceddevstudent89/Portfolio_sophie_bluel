@@ -33,32 +33,62 @@
                 <a href="./index.html#portfolio">projets</a>
               </li>
               <li>
-                <a href="index.html#contact">contact</a>
+                <a href="./index.html#contact">contact</a>
               </li>
               <li>
-                <a href="#" class="link__bold">login</a>
+                <a href="#" class="link-bold">login</a>
               </li>
               <li>
-                <img src="./assets/icons/instagram.png" alt="Instagram" />
+                <img
+                  class="icon-instagram"
+                  src="./assets/icons/instagram.png"
+                  alt="Instagram"
+                />
               </li>
             </ul>
           </nav>
         </header>
         <main>
-          <section id="admin">
-            <h2>Log in</h2>
+          <div class="container">
+            <h2>Log In</h2>
             <div class="disconnected"></div>
-            <form id="form" action="#">
-              <label for="mail">E-mail</label>
-              <input type="email" id="email" required />
-              <div class="email__error"></div>
-              <label for="mdp">Mot de passe</label>
-              <input type="password" id="mdp" name="mdp" required />
-              <div class="mdp__error"></div>
-              <input id="connect" type="submit" value="Se connecter" />
-              <a class="password" href="#">Mot de passe oublié</a>
+            <form>
+              <div class="input-group">
+                <label for="email">E-mail</label>
+                <div class="icon-input-container">
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    autocomplete="off"
+                  />
+                  <img
+                    src="./assets/icons/check.svg"
+                    alt="icone de validation"
+                    class="icone-verif"
+                  />
+                </div>
+                <span class="error-msg">Entrez un email valide.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="password">Mot de passe</label>
+                <div class="icon-input-container">
+                  <input type="password" name="password" id="password" />
+                  <img
+                    src="./assets/icons/check.svg"
+                    alt="icone de validation"
+                    class="icone-verif"
+                  />
+                </div>
+                <span class="validate-info"></span>
+                <span class="validate-mdp"></span>
+              </div>
+
+              <button type="submit">Se connecter</button>
             </form>
-          </section>
+            <a class="mdp-forgot" href="#">Mot de passe oublié</a>
+          </div>
         </main>
         <!-- FOOTER -->
         <footer>
