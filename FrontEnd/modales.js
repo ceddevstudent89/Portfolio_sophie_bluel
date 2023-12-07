@@ -98,28 +98,36 @@ function genererProjets(projets) {
 genererProjets(projets);
 
 async function deletePhoto(PhotoId) {
-  const response = await fetch(`http://localhost:5678/api/works/${PhotoId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      // Vérification de la réponse
-      if (response.ok) {
-        console.log("Suppression du projet");
-        return response.json();
-      } else {
-        // Si erreur elle est rejetée et indique le status de l'erreur
-        return Promise.reject(response.status);
-      }
+  // Ajouter une fonctionnalité de confirmation de suppression
+  const confirmation = confirm(
+    "Voulez-vous annuler la suppression ? Sinon confirmez la suppression avec bouton Annuler."
+  );
+  if (confirmation) {
+    alert("La suppression a bien été annulée !");
+  } else {
+    const response = await fetch(`http://localhost:5678/api/works/${PhotoId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     })
-    // Si erreur dans le code
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        // Vérification de la réponse
+        if (response.ok) {
+          alert("Suppression du projet 🚮");
+          return response.json();
+        } else {
+          // Si erreur elle est rejetée et indique le status de l'erreur
+          return Promise.reject(response.status);
+        }
+      })
+      // Si erreur dans le code
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 
 // Afficher l'image
@@ -151,32 +159,38 @@ postForm?.addEventListener("submit", (event) => {
   const title = document.querySelector("#form-title").value;
   console.log(title);
   const selectElement = document.querySelector("#form-category");
+  console.log(selectElement.value);
   const selectedOption = selectElement.options[selectElement.selectedIndex];
+  console.log(selectedOption);
   const categoryId = selectedOption.dataset.id;
 
-  const formData = new FormData();
-  formData.append("image", image);
-  formData.append("title", title);
-  formData.append("category", categoryId);
+  if (title === "" || image === "" || selectElement.value === "") {
+    alert("Veuillez remplir tous les champs du formulaire.");
+  } else {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", categoryId);
 
-  const myToken = localStorage.getItem("token");
+    const myToken = localStorage.getItem("token");
 
-  fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${myToken}`,
-    },
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Requête incorrecte !");
-      }
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${myToken}`,
+      },
+      body: formData,
     })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(console.error);
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Requête incorrecte !");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(console.error);
+  }
 });

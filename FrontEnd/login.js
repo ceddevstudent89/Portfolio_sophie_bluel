@@ -62,7 +62,7 @@ const passwordVerification = {
 };
 
 const regexList = {
-  number: /[0-9]/,
+  number: /[0-9]+/g,
 };
 
 let passwordValue;
@@ -87,7 +87,10 @@ function passwordValidation(event) {
 
     // Vérification du mot de passe
     const validateMdp = document.querySelector(".validate-mdp");
-    if (regexList[prop].test(passwordValue) && passwordValue === "S0phie") {
+    if (
+      regexList[prop].test(passwordValue) &&
+      passwordValue.trim() === "S0phie"
+    ) {
       passwordVerification[prop] = true;
       validateMdp.innerText = "Mot de passe valide !";
       validateMdp.setAttribute("style", "color: #1d6154");
