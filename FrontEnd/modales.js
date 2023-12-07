@@ -1,6 +1,7 @@
 const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
-//
+
+// Envoie la valeur associée à la clé token passée en paramètre.
 const token = localStorage.getItem("token");
 
 // Gestion de la modale 1
@@ -155,13 +156,9 @@ const postForm = document.querySelector("#modal-edit-project-form");
 postForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const image = document.querySelector("#form-image").files[0];
-  console.log(image);
   const title = document.querySelector("#form-title").value;
-  console.log(title);
   const selectElement = document.querySelector("#form-category");
-  console.log(selectElement.value);
   const selectedOption = selectElement.options[selectElement.selectedIndex];
-  console.log(selectedOption);
   const categoryId = selectedOption.dataset.id;
 
   if (title === "" || image === "" || selectElement.value === "") {

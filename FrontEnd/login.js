@@ -69,11 +69,8 @@ let passwordValue;
 
 function passwordValidation(event) {
   passwordValue = pswdInput.value;
-  console.log(passwordValue);
   let validationResult = 0;
   for (const prop in passwordVerification) {
-    console.log(prop);
-
     // Si la longueur du mot de passe est inférieur à 6 caractères = false
     if (prop === "length") {
       if (passwordValue.length < 6) {
@@ -116,13 +113,6 @@ async function login() {
     email: email,
     password: password,
   };
-
-  // if (email === "" || password === "") {
-  //   console.log("Veuiller saisir les champs");
-  //   const validateInfo = document.querySelector(".validate-info");
-  //   validateInfo.innerText = "Veuiller saisir touts les champs ci-dessus";
-  // }
-
   // Appel de la fonction fetch qui contient les infos pour la connexion
   await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -139,7 +129,6 @@ async function login() {
       }
     })
     .then((data) => {
-      console.log(data);
       // stokage du token dans le local Storage
       localStorage.setItem("token", data.token);
       // Redirection vers la page d'acceuil
