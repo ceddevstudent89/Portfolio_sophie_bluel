@@ -159,9 +159,19 @@ postForm?.addEventListener("submit", (event) => {
   const selectedOption = selectElement.options[selectElement.selectedIndex];
   const categoryId = selectedOption.dataset.id;
 
+  // Limite de taille en Mo (2 Mo )
+  const maxFileSizeMb = 2;
+
   if (title === "" || image === "" || selectElement.value === "") {
     alert("Veuillez remplir tous les champs du formulaire.");
   } else {
+    // Vérification de la taille de l'image
+    const fileSizeMb = image.size / (1024 * 1024);
+    if (fileSizeMb > maxFileSizeMb) {
+      alert(`L'image doit être inférieure à ${maxFileSizeMb} Mo.`);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);

@@ -49,13 +49,33 @@ function genererProjets(projets) {
 genererProjets(projets);
 
 // Gestion de la classe active des boutons filtres
+
+/* Cette ligne sélectionne tous les éléments du DOM
+(Document Object Model) qui ont la classe CSS "filtre__btn".
+Ces éléments sont des boutons de filtre dans
+la page web. */
 const btnsFiltres = document.querySelectorAll(".filtre__btn");
+/* Cette boucle for itère à travers tous les boutons de filtre
+sélectionnés précédemment. */
 for (let i = 0; i < btnsFiltres.length; i++) {
+  /* Pour chaque bouton de filtre, un écouteur d’événements
+  est ajouté pour détecter le clic
+  (lorsque l’utilisateur clique sur le bouton). */
   btnsFiltres[i].addEventListener("click", function () {
     let current = document.getElementsByClassName("active");
+    /* Cette ligne récupère tous les éléments du DOM qui ont
+    la classe CSS "active".
+    l’un de ces éléments est actuellement
+    marqué comme actif. */
     // console.log(current);
     current[0].className = current[0].className.replace("active", "");
+    /* Ici, la classe "active" est retirée de l’élément 
+    actuellement actif. 
+    Cela désactive visuellement le bouton précédemment actif */
     this.className += " active";
+    /* Enfin, la classe "active" est ajoutée à l’élément 
+    de bouton sur lequel l’utilisateur a cliqué. 
+    Cela le marque comme actif. */
   });
 }
 
