@@ -100,9 +100,7 @@ genererProjets(projets);
 
 async function deletePhoto(PhotoId) {
   // Ajouter une fonctionnalité de confirmation de suppression
-  const confirmation = confirm(
-    "Voulez-vous annuler la suppression ? Sinon confirmez la suppression avec bouton Annuler."
-  );
+  const confirmation = confirm("Annulez la suppression.");
   if (confirmation) {
     alert("La suppression a bien été annulée !");
   } else {
