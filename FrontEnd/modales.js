@@ -159,8 +159,8 @@ postForm?.addEventListener("submit", (event) => {
   const selectedOption = selectElement.options[selectElement.selectedIndex];
   const categoryId = selectedOption.dataset.id;
 
-  // Limite de taille en Mo (2 Mo )
-  const maxFileSizeMb = 2;
+  // Limite de taille en Mo (4 Mo )
+  const maxFileSizeMb = 4;
 
   if (title === "" || image === "" || selectElement.value === "") {
     alert("Veuillez remplir tous les champs du formulaire.");
