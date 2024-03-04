@@ -4,7 +4,6 @@ loggingOutOfTheAdminPage();
 function loggingOutOfTheAdminPage() {
   if (localStorage.getItem("token")) {
     localStorage.removeItem("token");
-
     const p = document.createElement("p");
     p.innerHTML = "<br>Déconnexion. Veuillez saisir les champs ci-dessous";
     p.setAttribute("style", "color: #f75252");
@@ -62,39 +61,36 @@ const passwordVerification = {
 };
 
 const regexList = {
-  number: /[0-9]+/g,
+  number: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d@#?!@$%^&*-]{6,}$/,
 };
 
 let passwordValue;
 
 function passwordValidation(event) {
+  // Vérification du mot de passe
+  const validateMdp = document.querySelector(".validate-mdp");
   passwordValue = pswdInput.value;
+  console.log(passwordValue);
+
   let validationResult = 0;
   for (const prop in passwordVerification) {
     // Si la longueur du mot de passe est inférieur à 6 caractères = false
     if (prop === "length") {
       if (passwordValue.length < 6) {
         passwordVerification.length = false;
-      } else {
+      } else if (passwordValue === "S0phie") {
         passwordVerification.length = true;
         validationResult++;
       }
       continue;
     }
 
-    // Vérification du mot de passe
-    const validateMdp = document.querySelector(".validate-mdp");
-    if (
-      regexList[prop].test(passwordValue) &&
-      passwordValue.trim() === "S0phie"
-    ) {
+    // console.log(validateMdp);
+    if (regexList[prop].test(passwordValue)) {
       passwordVerification[prop] = true;
-      validateMdp.innerText = "Mot de passe valide !";
-      validateMdp.setAttribute("style", "color: #1d6154");
       validationResult++;
     } else {
       passwordVerification[prop] = false;
-      validateMdp.innerText = "Mot de passe invalide !";
     }
   }
   // Si validationResult === 2 validation = true

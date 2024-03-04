@@ -73,7 +73,7 @@ function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const gallery = projets[i];
     const id = gallery.id; // utiliser ce id pour supprimer la photo
-    // console.log(id);
+    console.log("projet id: ", id);
     // Récupération de l'élément du DOM qui accueillera les photos
     const divGallery = document.querySelector(".modal-gallery");
     // Création d’une balise dédiée à un projet
@@ -162,6 +162,7 @@ postForm?.addEventListener("submit", (event) => {
   // Limite de taille en Mo (4 Mo )
   const maxFileSizeMb = 4;
 
+  // Vérification que tous les champs ne soient pas vide :
   if (title === "" || image === "" || selectElement.value === "") {
     alert("Veuillez remplir tous les champs du formulaire.");
   } else {

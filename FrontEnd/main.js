@@ -62,6 +62,8 @@ for (let i = 0; i < btnsFiltres.length; i++) {
   est ajouté pour détecter le clic
   (lorsque l’utilisateur clique sur le bouton). */
   btnsFiltres[i].addEventListener("click", function () {
+    /* getElementsByClassName est utile lorsque vous souhaitez
+     manipuler plusieurs éléments ayant la même classe dans votre page web */
     let current = document.getElementsByClassName("active");
     /* Cette ligne récupère tous les éléments du DOM qui ont
     la classe CSS "active".
@@ -76,37 +78,49 @@ for (let i = 0; i < btnsFiltres.length; i++) {
     /* Enfin, la classe "active" est ajoutée à l’élément 
     de bouton sur lequel l’utilisateur a cliqué. 
     Cela le marque comme actif. */
+    /* this est un moyen de référencer dynamiquement l’élément sur lequel
+     l’événement (au clique) a eu lieu, ce qui est utile lorsque
+      vous manipulez plusieurs éléments similaires dans une page web */
   });
 }
 
 function regenerationPage(objets) {
+  // ce code efface tout le contenu HTML de l’élément avec la classe CSS gallery
+  // Donc , réinitialiser ou vider dynamiquement un élément du DOM.
   document.querySelector(".gallery").innerHTML = "";
   genererProjets(objets);
 }
 
 function fitresObjets(id) {
+  //  projets => donnée de api "http://localhost:5678/api/works"
   const objetsFiltres = projets.filter(function (objet) {
+    // categoryId est récupéré de l'API
     return objet.categoryId === id;
   });
+  // réinitialiser ou vider dynamiquement un élément (classe : gallery) du DOM.
   regenerationPage(objetsFiltres);
 }
 // Filtrer les différentes catégories
 const boutonAfficherTous = document.querySelector(".btn-tous");
-boutonAfficherTous?.addEventListener("click", function () {
+boutonAfficherTous.addEventListener("click", function () {
   regenerationPage(projets);
 });
 
 const boutonFiltrerObjets = document.querySelector(".btn-objets");
-boutonFiltrerObjets?.addEventListener("click", function () {
+boutonFiltrerObjets.addEventListener("click", function () {
+  // appelle de la fonction fitresObjets(id qui correspond à la catégorie du projet)
+  // id:1 correspond : Objets
   fitresObjets(1);
 });
 
 const boutonFiltrerAppartements = document.querySelector(".btn-apparts");
-boutonFiltrerAppartements?.addEventListener("click", function () {
+boutonFiltrerAppartements.addEventListener("click", function () {
+  // id:2 à la catégorie Appartement
   fitresObjets(2);
 });
 
 const boutonFiltrerHotelsRestaurants = document.querySelector(".btn-hotels");
-boutonFiltrerHotelsRestaurants?.addEventListener("click", function () {
+boutonFiltrerHotelsRestaurants.addEventListener("click", function () {
+  // id:3 à la categorie Hôtels & restaurant
   fitresObjets(3);
 });
