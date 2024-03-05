@@ -133,7 +133,7 @@ async function deletePhoto(PhotoId) {
 let chosenImage = document.getElementById("chosen-image");
 let uploadButton = document.getElementById("form-image");
 
-uploadButton?.addEventListener("change", function () {
+uploadButton.addEventListener("change", function () {
   let reader = new FileReader();
   reader.readAsDataURL(uploadButton.files[0]);
   console.log(uploadButton.files[0]);
@@ -151,7 +151,7 @@ uploadButton?.addEventListener("change", function () {
 });
 
 const postForm = document.querySelector("#modal-edit-project-form");
-postForm?.addEventListener("submit", (event) => {
+postForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const image = document.querySelector("#form-image").files[0];
   const title = document.querySelector("#form-title").value;
@@ -179,7 +179,7 @@ postForm?.addEventListener("submit", (event) => {
     formData.append("category", categoryId);
 
     const myToken = localStorage.getItem("token");
-
+    // méthode POST envoyer des données
     fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {

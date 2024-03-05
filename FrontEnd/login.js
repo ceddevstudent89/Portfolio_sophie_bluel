@@ -70,7 +70,7 @@ function passwordValidation(event) {
   // Vérification du mot de passe
   const validateMdp = document.querySelector(".validate-mdp");
   passwordValue = pswdInput.value;
-  console.log(passwordValue);
+  // console.log(passwordValue);
 
   let validationResult = 0;
   for (const prop in passwordVerification) {
