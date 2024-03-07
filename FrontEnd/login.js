@@ -70,22 +70,20 @@ function passwordValidation(event) {
   // Vérification du mot de passe
   const validateMdp = document.querySelector(".validate-mdp");
   passwordValue = pswdInput.value;
-  // console.log(passwordValue);
 
   let validationResult = 0;
   for (const prop in passwordVerification) {
-    // Si la longueur du mot de passe est inférieur à 6 caractères = false
+    // Si la longueur du mot de passe est inférieure à 6 caractères = false
     if (prop === "length") {
-      if (passwordValue.length < 6) {
+      if (passwordValue.length > 6) {
         passwordVerification.length = false;
-      } else if (passwordValue === "S0phie") {
-        passwordVerification.length = true;
         validationResult++;
+      } else {
+        passwordVerification.length = true;
       }
       continue;
     }
 
-    // console.log(validateMdp);
     if (regexList[prop].test(passwordValue)) {
       passwordVerification[prop] = true;
       validationResult++;
@@ -93,10 +91,12 @@ function passwordValidation(event) {
       passwordVerification[prop] = false;
     }
   }
-  // Si validationResult === 2 validation = true
-  validationResult !== 2
-    ? showValidation({ index: 1, validation: false })
-    : showValidation({ index: 1, validation: true });
+  // Si validationResult est différent du nombre de critères à valider, validation = false
+  if (validationResult !== Object.keys(passwordVerification).length - 1) {
+    showValidation({ index: 1, validation: false });
+  } else {
+    showValidation({ index: 1, validation: true });
+  }
 }
 
 // Création de la fonction de connexion
@@ -121,7 +121,8 @@ async function login() {
         return response.json();
       } else {
         // Si erreur elle est rejetée et indique le status de l'erreur
-        return Promise.reject(response.status);
+        alert("Email ou Mot de passe invalide !");
+        return Promise.reject(console.log(response));
       }
     })
     .then((data) => {

@@ -251,6 +251,15 @@ a:hover {
   font-size: 15.5px;
   color: #000;
 }
+
+.edition-content {
+  font-weight: 700;
+}
+
+.fa-pen-to-square {
+  margin-right: 10px;
+  font-weight: 600;
+}
 .gallery {
   width: 100%;
   display: grid;
@@ -317,12 +326,13 @@ footer nav ul {
   margin-bottom: 4em;
 }
 
-.filtre__btn {
+.filtreBtn {
   font-family: Syne;
   color: #1d6154;
   font-size: 16px;
   font-weight: 700;
   padding: 0.5em 1em;
+  margin-right: 10px;
   border-radius: 100px;
   border: #1d6154 1px solid;
   background-color: transparent;
@@ -330,12 +340,12 @@ footer nav ul {
   transition: 0.3s ease-out;
 }
 
-.filtre__btn:hover {
+.filtreBtn:hover {
   background-color: #1d6154;
   color: #fff;
 }
 
-.filtre__btn.active {
+.filtreBtn.active {
   background-color: #1d6154;
   color: #fff;
 }
@@ -486,7 +496,6 @@ footer nav ul a {
   position: fixed;
   top: 50%;
   left: 50%;
-  overflow-y: hidden;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 10px;
@@ -524,6 +533,8 @@ footer nav ul a {
 }
 
 .modal-container {
+  max-height: 488px;
+  overflow-y: scroll;
   padding: 2em 6em;
 }
 
@@ -564,9 +575,16 @@ figure {
   cursor: pointer;
 }
 
+.line-modal-une {
+  background-color: #a7a7a7;
+  margin-bottom: 20px;
+  height: 1px;
+  width: 460px;
+  margin: 30px auto;
+}
+
 .modal-footer {
-  padding-top: 4em;
-  border-top: 1px solid #b3b3b3;
+  padding-top: 2em;
   text-align: center;
 }
 
@@ -727,6 +745,7 @@ select {
   margin-left: 0;
   margin-right: 0;
   margin-top: 5em;
+  background-color: #a7a7a7;
 }
 
 #modal-edit-project-form input[type="submit"] {

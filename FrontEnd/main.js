@@ -1,17 +1,10 @@
-//  Récupération des projets de Sophie Bluel
-const projets = await fetch("http://localhost:5678/api/works")
-  .then((projets) => {
-    return projets.json();
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
 let token = localStorage.getItem("token");
+let selectBtn; // Déclaration de la variable selectBtn
 const darkBar = document.getElementById("darkBar");
 const divFilters = document.querySelector(".btns-filtres");
 const iconEl = document.querySelector(".portfolio__icon");
 const logoutEl = document.querySelector(".login-logout a");
+const gallery = document.querySelector(".gallery");
 
 if (token) {
   darkBar.style.display = "block";
@@ -25,73 +18,99 @@ if (token) {
   logoutEl.textContent = "login";
 }
 
-// Fonction qui génère toute la page web
-function genererProjets(projets) {
-  // Afficher touts les projets avec la boucle for
-  for (let i = 0; i < projets.length; i++) {
-    // Création des éléments
-    const carteProjet = projets[i];
-    const figureElementParentCarte = document.createElement("figure");
-    const imageElement = document.createElement("img");
-    imageElement.src = carteProjet.imageUrl;
-    const figcaptionElement = document.createElement("figcaption");
-    figcaptionElement.innerText = carteProjet.title;
-
-    figureElementParentCarte.appendChild(imageElement);
-    figureElementParentCarte.appendChild(figcaptionElement);
-
-    // Recupération de la classe gallery
-    const divGallerie = document.querySelector(".gallery");
-    divGallerie?.appendChild(figureElementParentCarte);
-  }
+// Récupération des projets de Sophie Bluel
+async function getWorks() {
+  const response = await fetch("http://localhost:5678/api/works");
+  return await response.json();
 }
+
+// Affichage des works dans le dom
+async function displayWorks() {
+  const arrayWorks = await getWorks();
+  arrayWorks.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = work.title;
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
+  });
+}
+
 // Premier affichage de la page
-genererProjets(projets);
+displayWorks();
+
+// Afficher les boutons filtres
+async function getCategories() {
+  const response = await fetch("http://localhost:5678/api/categories");
+  return await response.json();
+}
+
+async function displayCategoriesButton() {
+  const categories = await getCategories();
+  categories.forEach((category) => {
+    const btn = document.createElement("button");
+    btn.textContent = category.name;
+    btn.id = category.id;
+    btn.classList.add("filtreBtn");
+    divFilters.appendChild(btn);
+  });
+}
+displayCategoriesButton();
+
+// Filtrer aux cliques les boutons par catégories
+async function filterCategoryButton() {
+  const works = await getWorks();
+  const buttons = document.querySelectorAll(".btns-filtres button");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      const btnId = event.target.id;
+      gallery.innerHTML = "";
+
+      if (btnId !== "0") {
+        const worksTriCategory = works.filter(
+          (work) => work.categoryId === parseInt(btnId)
+        );
+        await displayFilteredWorks(worksTriCategory);
+      } else {
+        displayWorks();
+      }
+    });
+  });
+}
 
 // Gestion de la classe active des boutons filtres
-const btnsFiltres = document.querySelectorAll(".filtre__btn");
-/* Cette boucle for itère à travers tous les boutons de filtre
-sélectionnés précédemment. */
+const btnsFiltres = document.querySelectorAll(".filtreBtn");
+
 for (let i = 0; i < btnsFiltres.length; i++) {
-  /* Pour chaque bouton de filtre, un écouteur d’événements
-  est ajouté pour détecter le clic
-  (lorsque l’utilisateur clique sur le bouton). */
   btnsFiltres[i].addEventListener("click", function () {
-    let current = document.getElementsByClassName("active");
-    // console.log(current);
-    current[0].className = current[0].className.replace("active", "");
-    this.className += " active";
+    // Supprimer la classe active de tous les boutons
+    btnsFiltres.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    // Ajouter la classe active uniquement au bouton cliqué
+    this.classList.add("active");
+
+    // Filtrer en fonction du bouton cliqué
+    filterCategoryButton();
   });
 }
 
-function regenerationPage(objets) {
-  document.querySelector(".gallery").innerHTML = "";
-  genererProjets(objets);
-}
-
-function fitresObjets(id) {
-  const objetsFiltres = projets.filter(function (objet) {
-    return objet.categoryId === id;
+async function displayFilteredWorks(filteredWorks) {
+  filteredWorks.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = work.title;
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
   });
-  regenerationPage(objetsFiltres);
 }
-// Filtrer les différentes catégories
-const boutonAfficherTous = document.querySelector(".btn-tous");
-boutonAfficherTous.addEventListener("click", function () {
-  regenerationPage(projets);
-});
 
-const boutonFiltrerObjets = document.querySelector(".btn-objets");
-boutonFiltrerObjets.addEventListener("click", function () {
-  fitresObjets(1);
-});
-
-const boutonFiltrerAppartements = document.querySelector(".btn-apparts");
-boutonFiltrerAppartements.addEventListener("click", function () {
-  fitresObjets(2);
-});
-
-const boutonFiltrerHotelsRestaurants = document.querySelector(".btn-hotels");
-boutonFiltrerHotelsRestaurants.addEventListener("click", function () {
-  fitresObjets(3);
-});
+filterCategoryButton();

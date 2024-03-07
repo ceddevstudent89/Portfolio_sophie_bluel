@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 // Gestion de la modale 1
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const openModalBtn = document.querySelector(".btn-open");
+const openModalBtn = document.querySelector(".edition-content");
 const closeModalBtn = document.querySelector(".btn-close");
 //
 const openModal = function () {
@@ -73,7 +73,7 @@ function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const gallery = projets[i];
     const id = gallery.id; // utiliser ce id pour supprimer la photo
-    console.log("projet id: ", id);
+    // console.log("projet id: ", id);
     // Récupération de l'élément du DOM qui accueillera les photos
     const divGallery = document.querySelector(".modal-gallery");
     // Création d’une balise dédiée à un projet
@@ -100,7 +100,7 @@ genererProjets(projets);
 
 async function deletePhoto(PhotoId) {
   // Ajouter une fonctionnalité de confirmation de suppression
-  const confirmation = confirm("OK pour annulez la suppression !");
+  const confirmation = confirm("Annulez pour la suppression de l'image 🖼️ !");
   if (confirmation) {
     alert("La suppression a bien été annulée !");
   } else {

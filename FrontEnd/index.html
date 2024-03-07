@@ -42,9 +42,10 @@
         <div class="modal-body">
           <div class="modal-gallery"></div>
         </div>
-        <div class="modal-footer">
-          <button class="btn-open-modal2">Ajouter une photo</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="line-modal-une"></div>
+        <button class="btn-open-modal2">Ajouter une photo</button>
       </div>
     </section>
     <div class="overlay2 hidden"></div>
@@ -138,24 +139,28 @@
           </p>
         </article>
       </section>
+
       <section id="portfolio">
         <div class="title__portfolio">
           <h2>Mes Projets</h2>
           <div class="portfolio__icon" style="display: none">
-            <span><i class="btn-open fa-regular fa-pen-to-square"></i></span>
+            <span class="edition-content"
+              ><i class="btn-open fa-regular fa-pen-to-square"></i
+              >modifier</span
+            >
           </div>
         </div>
         <!-- --------------------filtres------------------------ -->
+
         <div class="btns-filtres" style="display: block">
-          <button class="filtre__btn btn-tous active">Tous</button>
-          <button class="filtre__btn btn-objets">Objets</button>
-          <button class="filtre__btn btn-apparts">Appartements</button>
-          <button class="filtre__btn btn-hotels">Hôtels & restaurants</button>
+          <button id="0" class="filtreBtn">Tous</button>
         </div>
+
         <div class="gallery">
           <!-- Création de la galerie en javascript -->
         </div>
       </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
