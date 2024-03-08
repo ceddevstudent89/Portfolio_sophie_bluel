@@ -90,43 +90,40 @@ function genererProjets(projets) {
     projetElement.appendChild(trashElement);
 
     trashElement.addEventListener("click", (event) => {
-      console.log(event);
-      deletePhoto(id);
+      const confirmation = confirm(
+        "Voulez-vous vraiment supprimer ce projet ?"
+      );
+      if (confirmation) {
+        deletePhoto(id);
+      }
     });
   }
 }
 // afficher les projets
 genererProjets(projets);
-
 async function deletePhoto(PhotoId) {
-  // Ajouter une fonctionnalité de confirmation de suppression
-  const confirmation = confirm("Annulez pour la suppression de l'image 🖼️ !");
-  if (confirmation) {
-    alert("La suppression a bien été annulée !");
-  } else {
-    const response = await fetch(`http://localhost:5678/api/works/${PhotoId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+  const response = await fetch(`http://localhost:5678/api/works/${PhotoId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      // Vérification de la réponse
+      if (response.ok) {
+        alert("Suppression du projet 🚮");
+        return response.json();
+      } else {
+        // Si erreur elle est rejetée et indique le status de l'erreur
+        return Promise.reject(response.status);
+      }
     })
-      .then((response) => {
-        // Vérification de la réponse
-        if (response.ok) {
-          alert("Suppression du projet 🚮");
-          return response.json();
-        } else {
-          // Si erreur elle est rejetée et indique le status de l'erreur
-          return Promise.reject(response.status);
-        }
-      })
-      // Si erreur dans le code
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+    // Si erreur dans le code
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 // Afficher l'image

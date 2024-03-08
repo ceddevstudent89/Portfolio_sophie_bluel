@@ -50,11 +50,15 @@ async function getCategories() {
 
 async function displayCategoriesButton() {
   const categories = await getCategories();
+  categories.unshift({ id: 0, name: "Tous" }); // Ajout du bouton "Tous"
   categories.forEach((category) => {
     const btn = document.createElement("button");
     btn.textContent = category.name;
     btn.id = category.id;
     btn.classList.add("filtreBtn");
+    if (category.id === 0) {
+      btn.classList.add("active"); // Ajout de la classe active pour le bouton "Tous"
+    }
     divFilters.appendChild(btn);
   });
 }
@@ -69,6 +73,14 @@ async function filterCategoryButton() {
     button.addEventListener("click", async (event) => {
       const btnId = event.target.id;
       gallery.innerHTML = "";
+
+      // Supprimer la classe active de tous les boutons
+      buttons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      // Ajouter la classe active au bouton cliqué
+      event.target.classList.add("active");
 
       if (btnId !== "0") {
         const worksTriCategory = works.filter(
