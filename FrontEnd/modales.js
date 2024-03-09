@@ -113,7 +113,7 @@ async function deletePhoto(PhotoId) {
     .then((response) => {
       // Vérification de la réponse
       if (response.ok) {
-        alert("Suppression du projet 🚮");
+        // alert("Suppression du projet 🚮");
         return response.json();
       } else {
         // Si erreur elle est rejetée et indique le status de l'erreur
